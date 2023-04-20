@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DomainDataMapper">
+    <select id="getIntroductionData">
+        SELECT f.imageIdx, f.title, f.imageOrder, d.imagePath
+        FROM flingIntroduction as f
+        INNER JOIN domainPage as d ON f.imageIdx = d.imageIdx
+    </select>
+    <select id="getIntroductionText">
+        SELECT * 
+        FROM domainText 
+        WHERE domainType = 'mainPageIntroduction'
+    </select>
+    <select id="getFlingSpaceData">
+        SELECT f.imageIdx, f.spaceName, d.imagePath, f.spatialLink
+        FROM flingSpace AS f 
+        INNER JOIN domainPage as d ON f.imageIdx = d.imageIdx
+    </select>
+    <select id="getClientAndPartnersData"> 
+        SELECT c.imageIdx, c.imageOrder, d.imagePath
+        FROM clientAndPartners AS c 
+        INNER JOIN domainPage as d ON c.imageIdx = d.imageIdx
+    </select>
+    <select id="getTeamData">
+        SELECT t.imageIdx, t.name, t.skills, t.imageOrder, d.imagePath
+        FROM team AS t 
+        INNER JOIN domainPage as d ON t.imageIdx = d.imageIdx
+    </select>
+    <select id="getMainBannerData">
+        SELECT d.imageIdx, d.imagePath, m.imageOrder
+        FROM mainBanner AS m
+        INNER JOIN domainPage AS d ON m.imageIdx = d.imageIdx; 
+    </select>
+    <select id="getMainBannerText">
+        SELECT * 
+        FROM domainText 
+        WHERE domainType = 'mainPageBanner'
+    </select>
+</mapper>
