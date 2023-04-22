@@ -5,7 +5,7 @@ const validate = async (req, res, next) => {
   if (errors.isEmpty()) {
     return next();
   }
-  res.status(400).json({ message: errors.array()[0].msg });
+  res.status(400).json({ message: errors.array()});
 };
 
 module.exports = validate;

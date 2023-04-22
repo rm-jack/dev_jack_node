@@ -5,7 +5,6 @@ const validate = require("../../middleware/validator");
 const { body, matchedData } = require("express-validator");
 // const jwt = require("../../utils/jwt");
 
-const validateDomainType = [body("domainType").notEmpty().trim().escape(), validate];
 
 require("dotenv").config();
 
@@ -114,6 +113,11 @@ class DomainDataController {
 }
 
 const controller = new DomainDataController();
+
+//Validator.
+const validateDomainType = [body("domainType").notEmpty().trim().escape(), validate];
+
+//Router.
 router.post(
   "/domainTypeText",
   validateDomainType,
