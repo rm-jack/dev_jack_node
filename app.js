@@ -4,8 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-const { swaggerUi, specs } = require("./Swagger");
-const swaggerFile = require("./swagger-output.json");
 const noticeRouter = require("./notice/controller/NoticeController");
 const domainDataRouter = require("./domainData/controller/DomainDataController");
 const productRouter = require("./product/controller/ProductController");
@@ -26,8 +24,6 @@ app.use(express.static(path.join(__dirname, "assets")));
 app.use("/notice", noticeRouter);
 app.use("/domainData", domainDataRouter);
 app.use("/product", productRouter);
-//swagger
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // error handler
 app.use(function (err, req, res, next) {

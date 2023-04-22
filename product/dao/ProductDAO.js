@@ -105,18 +105,19 @@ class ProductDAO {
     }
   };
 
-  getOtherProduct = async (productIdx, clickCount, offSet) => {
+  getProductListByIdx = async (productList) => {
     try {
+      console.log(productList);
       const query = this.mapper.getStatement(
         "ProductMapper",
-        "getOtherProduct",
-        { productIdx, clickCount, offSet },
+        "getProductListByIdx",
+        { productList: [...productList] },
         {
           language: "sql",
           indent: "   ",
         }
       );
-      console.log("[class Product-getOtherProduct]" + query);
+      console.log("[class Product-getProductListByIdx]" + query);
 
       const connection = await pool.getConnection(async (conn) => {
         conn;
@@ -126,7 +127,28 @@ class ProductDAO {
       connection.release();
       return rows;
     } catch (e) {
-      console.log("[class Product-getOtherProduct]" + e);
+      console.log("[class Product-getProductListByIdx]" + e);
+      return [];
+    }
+  };
+
+  getAllProduct = async () => {
+    try {
+      const query = this.mapper.getStatement("ProductMapper", "getAllProduct", {
+        language: "sql",
+        indent: "   ",
+      });
+      console.log("[class Product-getAllProduct]" + query);
+
+      const connection = await pool.getConnection(async (conn) => {
+        conn;
+      });
+      const [rows] = await connection.query(query);
+      console.log(`response: ${rows}`);
+      connection.release();
+      return rows;
+    } catch (e) {
+      console.log("[class Product-getAllProduct]" + e);
       return [];
     }
   };

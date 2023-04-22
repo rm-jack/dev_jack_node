@@ -10,8 +10,29 @@ class DomainDataController {
   constructor() {
     this.service = new DomainDataService();
   }
-  //** Main Page Controller** //
 
+  /**
+   * Get domain specific data by domainType
+   */
+  getDomainTypeImage = async (req, res, next) => {
+    const { domainType } = req.body;
+
+    // console.log(domainType);
+    const data = await this.service.getDomainTypeImage(domainType);
+    res.json(data);
+    next();
+  };
+  getDomainTypeText = async (req, res, next) => {
+    const { domainType } = req.body;
+    // console.log(domainType);
+    const data = await this.service.getDomainTypeText(domainType);
+    res.json(data);
+    next();
+  };
+
+  /**
+   * Main Page Controller
+   */
   getMainBannerImage = async (req, res, next) => {
     const response = {};
     const data = await this.service.getMainBannerImage();
@@ -19,13 +40,7 @@ class DomainDataController {
     res.json(response);
     next();
   };
-  getMainBannerText = async (req, res, next) => {
-    const response = {};
-    const data = await this.service.getMainBannerText();
-    response.text = data;
-    res.json(response);
-    next();
-  };
+
   getFlingIntroductionData = async (req, res, next) => {
     const response = {};
     const data = await this.service.getFlingIntroductionData();
@@ -62,11 +77,11 @@ class DomainDataController {
    * POST
    * UPDATE
    */
-  getPortfolioPageDescription = async (req, res, next)=>{
-    const data = await this.service.getPortfolioPageDescription(); 
-    res.json(data); 
-    next(); 
-  }
+
+  /**
+   * Product Page Controller
+   */
+
   /**
    * Use Case Page Controller
    * GET
@@ -97,15 +112,13 @@ class DomainDataController {
 }
 
 const controller = new DomainDataController();
+router.post("/domainTypeText", controller.getDomainTypeText);
+router.post("/domainTypeImage", controller.getDomainTypeImage); 
 
 router.get("/mainBannerImage", controller.getMainBannerImage);
-router.get("/mainBannerText", controller.getMainBannerText);
 router.get("/introductionData", controller.getFlingIntroductionData);
 router.get("/flingSpaceData", controller.getFlingSpaceData);
 router.get("/teamData", controller.getTeamData);
 router.get("/clientAndPartnersData", controller.getClientAndPartnersData);
 
-
-
-router.get('/portfolioText')
 module.exports = router;

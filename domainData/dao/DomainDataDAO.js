@@ -28,30 +28,6 @@ class DomainDataDAO {
       return [];
     }
   };
-  getIntroductionText = async () => {
-    try {
-      const query = this.mapper.getStatement(
-        "DomainDataMapper",
-        "getIntroductionText",
-        {
-          language: "sql",
-          indent: "   ",
-        }
-      );
-      console.log("[class DomainData-getIntroductionData]" + query);
-
-      const connection = await pool.getConnection(async (conn) => {
-        conn;
-      });
-      const [rows] = await connection.query(query);
-      console.log(`response: ${rows}`);
-      connection.release();
-      return rows;
-    } catch (e) {
-      console.log("[class DomainData-getIntroductionData]" + e);
-      return [];
-    }
-  };
 
   getFlingSpaceData = async () => {
     try {
@@ -125,6 +101,7 @@ class DomainDataDAO {
       return [];
     }
   };
+
   getMainBannerImage = async () => {
     try {
       const query = this.mapper.getStatement(
@@ -149,17 +126,19 @@ class DomainDataDAO {
       return [];
     }
   };
-  getMainBannerText = async () => {
+
+  getDomainTypeImage = async (domainType) => {
     try {
       const query = this.mapper.getStatement(
         "DomainDataMapper",
-        "getMainBannerText",
+        "getDomainTypeImage",
+        { domainType },
         {
           language: "sql",
           indent: "   ",
         }
       );
-      console.log("[class DomainData-getMainBannerData]" + query);
+      console.log("[class DomainData-getDomainTypeImage]" + query);
 
       const connection = await pool.getConnection(async (conn) => {
         conn;
@@ -169,21 +148,23 @@ class DomainDataDAO {
       connection.release();
       return rows;
     } catch (e) {
-      console.log("[class DomainData-getMainBannerData]" + e);
+      console.log("[class DomainData-getDomainTypeImage]" + e);
       return [];
     }
   };
-  getMainPageText = async () => {
+
+  getDomainTypeText = async (domainType) => {
     try {
       const query = this.mapper.getStatement(
         "DomainDataMapper",
-        "getMainPageText",
+        "getDomainTypeText",
+        { domainType },
         {
           language: "sql",
           indent: "   ",
         }
       );
-      console.log("[class DomainData-getMainPageText]" + query);
+      console.log("[class DomainData-getDomainTypeText]" + query);
 
       const connection = await pool.getConnection(async (conn) => {
         conn;
@@ -193,7 +174,7 @@ class DomainDataDAO {
       connection.release();
       return rows;
     } catch (e) {
-      console.log("[class DomainData-getMainPageText]" + e);
+      console.log("[class DomainData-getDomainTypeText]" + e);
       return [];
     }
   };

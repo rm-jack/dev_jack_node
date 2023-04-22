@@ -6,6 +6,16 @@ class ProductService {
   constructor() {
     this.ProductDAO = new ProductDAO();
   }
+
+  _generateQR = async (text) => {
+    try {
+      const code = await qr.toDataURL(text);
+      return code;
+    } catch (e) {
+      console.log(e);
+      return "";
+    }
+  };
   getProductList = async (param) => {
     const { limit, offset } = param;
 
@@ -25,22 +35,14 @@ class ProductService {
   };
 
   getProduct = async (id) => {
-    id = Number(id);
-    const productData = await this.ProductDAO.getProductData(id);
-    qr.toDataURL(productData[0].spatialLink, (err, src) => {
-      if (err) return false;
-      productData[0].qrCode = src;
-    });
-    const productBanner = await this.ProductDAO.getProductBanner(id);
-    const productComponent = await this.ProductDAO.getProductComponent(id);
-
+    const productData = await this.ProductDAO.getProductData(Number(id));
+    const productList = await this.ProductDAO.getAllProduct();
     try {
       const res = {};
-      res.productData = productData;
-      res.banner = CommonUtil.convertPathToBuffer(productBanner);
-      //   res.banner = productBanner;
-      res.component = CommonUtil.convertPathToBuffer(productComponent);
-      //   res.component = productComponent;
+      const qr = await this._generateQR(productData[0].spatialLink);
+      productData[0].qrCode = qr;
+      res.productData = productData[0];
+      res.productList = productList;
       return res;
     } catch (e) {
       console.log(e);
@@ -48,11 +50,41 @@ class ProductService {
     }
   };
 
-  getOtherProduct = async (productIdx, clickCount, offSet) =>{
-    const res = await this.ProductDAO.getOtherProduct(); 
-    console.log(res); 
-    return true; 
-  }; 
+  getProductBanner = async (id) => {
+    const productBanner = await this.ProductDAO.getProductBanner(id);
+    try {
+      const res = {};
+      res.banner = CommonUtil.convertPathToBuffer(productBanner);
+      return res;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  };
+  getProductComponent = async (id) => {
+    const productComponent = await this.ProductDAO.getProductComponent(id);
+    try {
+      const res = {};
+      res.component = CommonUtil.convertPathToBuffer(productComponent);
+      return res;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  };
+
+  getProductListByIdx = async (productList) => {
+    try {
+      const productListData = await this.ProductDAO.getProductListByIdx(
+        productList
+      );
+      const data = CommonUtil.convertPathToBuffer(productListData);
+      return data;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  };
 }
 
 module.exports = ProductService;

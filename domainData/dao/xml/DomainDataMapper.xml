@@ -6,10 +6,19 @@
         FROM flingIntroduction as f
         INNER JOIN domainPage as d ON f.imageIdx = d.imageIdx
     </select>
-    <select id="getIntroductionText">
+    <select id="getDomainTypeText">
         SELECT * 
         FROM domainText 
-        WHERE domainType = 'mainPageIntroduction'
+        <if test="domainType != null">
+            WHERE domainType = #{domainType}
+        </if>
+    </select>
+    <select id="getDomainTypeImage">
+        SELECT *
+        FROM domainPage
+        <if test="domainType != null">
+            WHERE domainType = #{domainType}
+        </if>
     </select>
     <select id="getFlingSpaceData">
         SELECT f.imageIdx, f.spaceName, d.imagePath, f.spatialLink
@@ -31,9 +40,5 @@
         FROM mainBanner AS m
         INNER JOIN domainPage AS d ON m.imageIdx = d.imageIdx; 
     </select>
-    <select id="getMainBannerText">
-        SELECT * 
-        FROM domainText 
-        WHERE domainType = 'mainPageBanner'
-    </select>
+
 </mapper>

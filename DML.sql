@@ -16,7 +16,8 @@ VALUES
 ('assets/about/fling_team7.png', 'mainPageFlingTeam'),
 ('assets/about/fling_team8.png', 'mainPageFlingTeam'),
 ('assets/mainPage/fling_space.png', 'mainPageFlingSpace'),
-('assets/mainPage/client_and_partners1.png', "mainPageClientAndPartners");
+('assets/mainPage/client_and_partners1.png', "mainPageClientAndPartners"),
+('assets/productPage/banner.png', 'productPageBanner');
 
 
 INSERT INTO 
@@ -61,7 +62,8 @@ VALUES
 ('productPageDescription', 'Product Page 소개 텍스트입니다.'),
 ('usecasePageDescription', 'Use Case Page 소개 텍스트입니다.'),
 ('eventPageDescription', 'Event Page 소개 텍스트입니다.'),
-('noticePageDescription', 'Notice Page 소개 텍스트입니다.');
+('noticePageDescription', 'Notice Page 소개 텍스트입니다.'),
+('prodcutPageDescription', 'Product Page 소개 텍스트입니다.');
 
 
 
@@ -152,5 +154,4 @@ VALUES
 (1, 'assets/product/product1/component/component2.png'),
 (1, 'assets/product/product1/component/component3.png'),
 (1, 'assets/product/product1/component/component4.png');
-
 

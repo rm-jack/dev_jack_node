@@ -31,4 +31,17 @@
             WHERE c.productIdx = ${productIdx} ; 
         </if>
     </select>
+    <select id="getProductListByIdx">
+        SELECT productIdx, productName, imagePath
+        FROM product
+        WHERE productIdx in 
+            <foreach collection="productList" item="productIdx" open="(" close=")" separator=",">
+                ${productIdx}
+            </foreach>
+    </select>
+    <select id="getAllProduct">
+        SELECT productIdx, productName
+        FROM product
+        WHERE productIdx > 0
+    </select>
 </mapper>

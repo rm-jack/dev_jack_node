@@ -9,7 +9,29 @@ class DomainDataService {
     this.DomainDataDAO = new DomainDataDAO();
   }
   /**
-   * Main Page Assets . Images and Text 
+   * Get data by domainType.
+   */
+  getDomainTypeText = async (domainType) => {
+    const domainTypeText = await this.DomainDataDAO.getDomainTypeText(
+      domainType
+    );
+    return domainTypeText;
+  };
+  getDomainTypeImage = async (domainType) => {
+    const domainTypeImage = await this.DomainDataDAO.getDomainTypeImage(
+      domainType
+    );
+    try {
+      const data = CommonUtil.convertPathToBuffer(domainTypeImage);
+      return data;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+    return domainTypeImage;
+  };
+  /**
+   * Main Page Assets . Images and Text
    */
   getMainBannerImage = async () => {
     const mainBannerImage = await this.DomainDataDAO.getMainBannerImage();
@@ -22,10 +44,7 @@ class DomainDataService {
       return e;
     }
   };
-  getMainBannerText = async () => {
-    const mainBannerText = await this.DomainDataDAO.getMainBannerText();
-    return mainBannerText;
-  };
+
   getFlingIntroductionData = async () => {
     const flingIntroductionData =
       await this.DomainDataDAO.getIntroductionData();
@@ -37,11 +56,7 @@ class DomainDataService {
       return e;
     }
   };
-  getFlingIntroductionText = async () => {
-    const flingIntroductionData =
-      await this.DomainDataDAO.getIntroductionText();
-    return flingIntroductionData;
-  };
+
   getFlingSpaceData = async () => {
     const flingSpaceData = await this.DomainDataDAO.getFlingSpaceData();
     try {
@@ -76,7 +91,10 @@ class DomainDataService {
       return e;
     }
   };
-  
+
+  /**
+   * Product Page Assets. Image and Text
+   */
 }
 
 module.exports = DomainDataService;
