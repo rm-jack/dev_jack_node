@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const ProductService = require("../service/ProductService");
-const validate = require("../../middleware/validator");
+const validate = require("../../middleware/validate");
 const { body, matchedData } = require("express-validator");
 // const jwt = require("../../utils/jwt");
 

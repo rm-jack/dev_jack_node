@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PortfolioMapper">
+    <select id="getPortfolioList">
+        SELECT *
+        FROM portfolio 
+    </select>
+    <select id="getPortfolioBanner">
+        SELECT pb.spaceIdx , pb.imagePath 
+        FROM portfolio p 
+        INNER JOIN portfolioBanner pb
+        ON p.portfolioIdx =pb.spaceIdx
+        <if test="spaceIdx != null">
+            WHERE pb.spaceIdx =${spaceIdx};
+        </if> 
+         
+    </select>
+
+</mapper>

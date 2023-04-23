@@ -4,9 +4,12 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-const noticeRouter = require("./notice/controller/NoticeController");
+
 const domainDataRouter = require("./domainData/controller/DomainDataController");
+const portfolioRouter = require("./portfolio/controller/PortfolioController"); 
 const productRouter = require("./product/controller/ProductController");
+const noticeRouter = require("./notice/controller/NoticeController");
+
 var app = express();
 
 // view engine setup
@@ -21,9 +24,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "assets")));
 
 //router
-app.use("/notice", noticeRouter);
 app.use("/domainData", domainDataRouter);
+app.use('/portfolio', portfolioRouter); 
 app.use("/product", productRouter);
+app.use("/notice", noticeRouter);
 
 // error handler
 app.use(function (err, req, res, next) {

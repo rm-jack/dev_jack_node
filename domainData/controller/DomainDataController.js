@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const DomainDataService = require("../service/DomainDataService");
-const validate = require("../../middleware/validator");
-const { body, matchedData } = require("express-validator");
+const validate = require("../../middleware/validate");
+const { param, matchedData } = require("express-validator");
 // const jwt = require("../../utils/jwt");
 
 
@@ -24,8 +24,8 @@ class DomainDataController {
     next();
   };
   getDomainTypeText = async (req, res, next) => {
-    const { domainType } = req.body;
-    // console.log(domainType);
+    const { domainType } = matchedData(req);
+    console.log(domainType);
     const data = await this.service.getDomainTypeText(domainType);
     res.json(data);
     next();
@@ -115,16 +115,16 @@ class DomainDataController {
 const controller = new DomainDataController();
 
 //Validator.
-const validateDomainType = [body("domainType").notEmpty().trim().escape(), validate];
+const validateDomainType = [param("domainType").notEmpty().trim().escape(), validate];
 
 //Router.
-router.post(
-  "/domainTypeText",
+router.get(
+  "/domainTypeText/:domainType",
   validateDomainType,
   controller.getDomainTypeText
 );
-router.post(
-  "/domainTypeImage",
+router.get(
+  "/domainTypeImage/:domainType",
   validateDomainType,
   controller.getDomainTypeImage
 );
