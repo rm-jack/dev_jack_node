@@ -118,7 +118,7 @@ CREATE TABLE portfolio (
 	portfolioName VARCHAR(50) NOT NULL COMMENT '포트폴리오 제목',
 	spatialLink VARCHAR(150) NOT NULL COMMENT 'SPATIAL 공간 연결 URI',
 	skills VARCHAR(250) NOT NULL COMMENT '주요 기술',
-	imagePath VARCHAR(150) NOT NULL COMMENT '썸네일 이미지'
+	spaceDescription TEXT(300) NOT NULL COMMENT "공간 상세 설명"
 ); 
 
 create table portfolioBanner (
