@@ -155,3 +155,47 @@ VALUES
 (1, 'assets/product/product1/component/component3.png'),
 (1, 'assets/product/product1/component/component4.png');
 
+
+
+INSERT INTO 
+portfolio (portfolioName, spatialLink, skills, spaceDescription) 
+VALUES
+('Olson,CronaandPadberg', 'https://spatial.io', 'Soluta quia labore.','Facilis provident omnis ab.
+Iusto labore quibusdam facere eum et.'),
+
+('BlandaFranecki', 'https://spatial.io', 'Minus dolores incidunt dicta.','Voluptatibus iure nam.
+Ullam assumenda natus quas iure vitae odit explicabo quibusdam.'),
+
+('HoppeKlocko', 'https://spatial.io', 'Accusantium amet necessitatibus molestias voluptatum repellat quaerat facere tenetur corporis.','Dolores sed qui odit expedita quasi eaque recusandae sequi voluptatibus.
+Ducimus id ad.'),
+
+('BlandaKessler', 'https://spatial.io', 'Officia autem excepturi tenetur repellat recusandae quisquam animi optio vero.','Temporibus reiciendis rerum numquam impedit modi accusamus placeat qui.
+Et provident debitis explicabo velit adipisci.'),
+
+('Halvorson,WatersandPurdy', 'https://spatial.io', 'Ullam labore ducimus.','Minima eligendi omnis sunt.
+Doloribus voluptate mollitia nihil architecto quis.'),
+
+('OberbrunnerLLC', 'https://spatial.io', 'Ipsum illum maxime ullam.','Voluptas nesciunt inventore perferendis ea.
+Ex veniam neque.'),
+
+('BruenLLC', 'https://spatial.io', 'Nulla voluptas totam at vero doloremque.','Nihil perspiciatis commodi minus error.
+Commodi ipsam est nostrum corporis enim quia tempore architecto nulla.'),
+
+('Labadie,TremblayandHackett', 'https://spatial.io', 'Est aliquid inventore mollitia at placeat voluptas ea.','Dolor rerum aliquam sint praesentium repudiandae.        
+Ea eos necessitatibus placeat repellendus quam a sed amet unde.'),
+
+('BaumbachInc', 'https://spatial.io', 'Neque asperiores corporis omnis atque.','Reiciendis amet error perspiciatis.
+Harum harum illum est pariatur tempore.'),
+
+('Monahan,RaynorandWolff', 'https://spatial.io', 'Cupiditate porro praesentium fugiat beatae numquam.','Perferendis assumenda saepe explicabo impedit rem.
+Eos cum odio.'),
+
+
+INSERT INTO portfolioBanner
+(spaceIdx, imagePath)
+VALUES 
+(1, 'assets/portfolio/portfolio1/banner/banner1.png'),
+(1, 'assets/portfolio/portfolio1/banner/banner2.png'),
+(1, 'assets/portfolio/portfolio1/banner/banner3.png'),
+(1, 'assets/portfolio/portfolio1/banner/banner4.png'),
+(1, 'assets/portfolio/portfolio1/banner/banner5.png');
